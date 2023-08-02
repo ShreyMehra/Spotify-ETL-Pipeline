@@ -101,7 +101,6 @@ def lambda_handler(event, context):
     for key in spotify_keys:
         copy_source = {
             'Bucket': Bucket,
-            'Key': key
-        }
+            'Key': key}
         s3_resource.meta.client.copy(copy_source, Bucket, 'raw_data/processed/' + key.split("/")[-1])    
         s3_resource.Object(Bucket, key).delete()
